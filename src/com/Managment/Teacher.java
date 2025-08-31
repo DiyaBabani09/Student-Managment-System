@@ -58,7 +58,7 @@ public  static  void TeacherDetails(){
                 System.out.println("updating");
                 break;
 
-                case 4: 
+                case 4: s2.DeleteTeacherDetails();
                 System.out.println("deleting");
                 break;
                

@@ -13,7 +13,7 @@ public class ServiceMethods implements ServiceInterfaces {
     static  ArrayList<Student>list=new ArrayList<>();
      static  ArrayList<Teacher>list2=new ArrayList<>();
       static  ArrayList<Course>list3=new ArrayList<>();
-    Scanner sc=new Scanner(System.in);
+     Scanner sc=new Scanner(System.in);
     
     public void AddStudentDetails(){
         
@@ -242,24 +242,28 @@ String run=" ";
 // while(!run.equalsIgnoreCase("done")){
 System.out.println("enter the student name");
 String name=sc.next();
-// sc.next();
+ 
 
 for(int i=0;i<list.size();i++){
     Student s1=list.get(i);
     String sname=s1.getName();
+    boolean found= false;
+    boolean found2=false;
     if(sname.equals(name)){
+        found=true;
         System.out.println(s1.getName());
         System.out.println("enter course");
-        String cname=sc.nextLine();
-        sc.nextLine();
+        String cname=sc.next();
+        
         for(int i2=0;i2<list3.size();i2++){
             Course c1=list3.get(i2);
             String coursename=c1.getName();
-            System.out.println(coursename);
-
-if(coursename.equals(cname)){
-   
-m.put(name, cname);
+            
+            if(cname.equals(coursename)){
+    System.out.println(coursename);
+     System.out.println(coursename);
+m.put(name,cname);
+System.out.println(m);
 }
 // else{
 
@@ -275,22 +279,101 @@ m.put(name, cname);
     // run=sc.nextLine();
     // sc.nextLine();
 }
-
-System.out.println(m); 
+for(String key:m.keySet()){
+System.out.println(key); 
+}
 
 
 }
+public  void DeleteStudentDetails(){
+    System.out.println("Enter the Student id ");
+    int id=sc.nextInt();
+    boolean found= false;
+    for(int i=0;i<list.size();i++){
+        Student s=list.get(i);
+        if(s.getId()==id){
+            list.remove(i);
+            found =true;
+         
+        }
+    }
+    if(found==false){
+           System.out.println("id is not exist");
+    }
+        
+    }
+
+    public  void DeleteTeacherDetails(){
+    System.out.println("Enter the Student id ");
+    int id=sc.nextInt();
+    boolean found= false;
+    for(int i=0;i<list2.size();i++){
+        Teacher s=list2.get(i);
+        if(s.getId()==id){
+            list2.remove(i);
+            found =true;
+         
+        }
+    }
+    if(found==false){
+           System.out.println("id is not exist");
+    }
+        
+    }
+
+
+
+
+
+
+public  void DeleteCourseDetails(){
+    System.out.println("Enter the Student id ");
+    int id=sc.nextInt();
+    boolean found= false;
+    for(int i=0;i<list3.size();i++){
+        Course s=list3.get(i);
+        if(s.getId()==id){
+            list3.remove(i);
+            found =true;
+         
+        }
+    }
+    if(found==false){
+           System.out.println("id is not exist");
+    }
+        
+    }
+
+
+
+
+
+
+
+
+
+
 
     public static void main(String[] args) {
         ServiceMethods s=new ServiceMethods();
           // ArrayList<Student>list=new ArrayList<>();
           s.AddStudentDetails();
           s.ViewStudentDetails();
-         s.AddCourseDetails();
-        // s.ViewCourseDetails();
+        
+
+        // s.AddTeacherDetails();
+
+        // s.DeleteTeacherDetails();
+        // s.ViewTeacherDetails();
+        s.AddCourseDetails();
+        // s.DeleteCourseDetails();
+        s.ViewCourseDetails();
+
+        //  s.AddCourseDetails();
+        // // s.ViewCourseDetails();
           
-         s.ViewCourseDetails();
-         s.Student_Couse();
+        //  s.ViewCourseDetails();
+          s.Student_Couse();
     }
     
 }

@@ -67,7 +67,7 @@ public  static  void CourseDetails(){
                 System.out.println("updating");
                 break;
 
-                case 4: 
+                case 4: s2.DeleteCourseDetails();
                 System.out.println("deleting");
                 break;
                
