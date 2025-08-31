@@ -76,7 +76,7 @@ public  static void StudentDetails(){
                 System.out.println("updating");
                 break;
 
-                case 4: 
+                case 4: s.DeleteStudentDetails();
                 System.out.println("deleting");
                 break;
                

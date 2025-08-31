@@ -13,7 +13,7 @@ public class ServiceMethods implements ServiceInterfaces {
     static  ArrayList<Student>list=new ArrayList<>();
      static  ArrayList<Teacher>list2=new ArrayList<>();
       static  ArrayList<Course>list3=new ArrayList<>();
-    Scanner sc=new Scanner(System.in);
+     Scanner sc=new Scanner(System.in);
     
     public void AddStudentDetails(){
         
@@ -258,7 +258,6 @@ for(int i=0;i<list.size();i++){
             System.out.println(coursename);
 
 if(coursename.equals(cname)){
-   
 m.put(name, cname);
 }
 // else{
@@ -280,17 +279,95 @@ System.out.println(m);
 
 
 }
+public  void DeleteStudentDetails(){
+    System.out.println("Enter the Student id ");
+    int id=sc.nextInt();
+    boolean found= false;
+    for(int i=0;i<list.size();i++){
+        Student s=list.get(i);
+        if(s.getId()==id){
+            list.remove(i);
+            found =true;
+         
+        }
+    }
+    if(found==false){
+           System.out.println("id is not exist");
+    }
+        
+    }
+
+    public  void DeleteTeacherDetails(){
+    System.out.println("Enter the Student id ");
+    int id=sc.nextInt();
+    boolean found= false;
+    for(int i=0;i<list2.size();i++){
+        Teacher s=list2.get(i);
+        if(s.getId()==id){
+            list2.remove(i);
+            found =true;
+         
+        }
+    }
+    if(found==false){
+           System.out.println("id is not exist");
+    }
+        
+    }
+
+
+
+
+
+
+public  void DeleteCourseDetails(){
+    System.out.println("Enter the Student id ");
+    int id=sc.nextInt();
+    boolean found= false;
+    for(int i=0;i<list3.size();i++){
+        Course s=list3.get(i);
+        if(s.getId()==id){
+            list3.remove(i);
+            found =true;
+         
+        }
+    }
+    if(found==false){
+           System.out.println("id is not exist");
+    }
+        
+    }
+
+
+
+
+
+
+
+
+
+
 
     public static void main(String[] args) {
         ServiceMethods s=new ServiceMethods();
           // ArrayList<Student>list=new ArrayList<>();
-          s.AddStudentDetails();
-          s.ViewStudentDetails();
-         s.AddCourseDetails();
-        // s.ViewCourseDetails();
+        //   s.AddStudentDetails();
+        //   s.ViewStudentDetails();
+        //   s.DeleteStudentDetails();
+        //    s.ViewStudentDetails();
+        s.AddTeacherDetails();
+        
+        s.DeleteTeacherDetails();
+        s.ViewTeacherDetails();
+        s.AddCourseDetails();
+        s.DeleteCourseDetails();
+        s.ViewCourseDetails();
+
+        //  s.AddCourseDetails();
+        // // s.ViewCourseDetails();
           
-         s.ViewCourseDetails();
-         s.Student_Couse();
+        //  s.ViewCourseDetails();
+        //  s.Student_Couse();
     }
     
 }
