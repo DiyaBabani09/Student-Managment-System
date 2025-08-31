@@ -242,23 +242,28 @@ String run=" ";
 // while(!run.equalsIgnoreCase("done")){
 System.out.println("enter the student name");
 String name=sc.next();
-// sc.next();
+ 
 
 for(int i=0;i<list.size();i++){
     Student s1=list.get(i);
     String sname=s1.getName();
+    boolean found= false;
+    boolean found2=false;
     if(sname.equals(name)){
+        found=true;
         System.out.println(s1.getName());
         System.out.println("enter course");
-        String cname=sc.nextLine();
-        sc.nextLine();
+        String cname=sc.next();
+        
         for(int i2=0;i2<list3.size();i2++){
             Course c1=list3.get(i2);
             String coursename=c1.getName();
-            System.out.println(coursename);
-
-if(coursename.equals(cname)){
-m.put(name, cname);
+            
+            if(cname.equals(coursename)){
+    System.out.println(coursename);
+     System.out.println(coursename);
+m.put(name,cname);
+System.out.println(m);
 }
 // else{
 
@@ -274,8 +279,9 @@ m.put(name, cname);
     // run=sc.nextLine();
     // sc.nextLine();
 }
-
-System.out.println(m); 
+for(String key:m.keySet()){
+System.out.println(key); 
+}
 
 
 }
@@ -351,23 +357,23 @@ public  void DeleteCourseDetails(){
     public static void main(String[] args) {
         ServiceMethods s=new ServiceMethods();
           // ArrayList<Student>list=new ArrayList<>();
-        //   s.AddStudentDetails();
-        //   s.ViewStudentDetails();
-        //   s.DeleteStudentDetails();
-        //    s.ViewStudentDetails();
-        s.AddTeacherDetails();
+          s.AddStudentDetails();
+          s.ViewStudentDetails();
         
-        s.DeleteTeacherDetails();
-        s.ViewTeacherDetails();
+
+        // s.AddTeacherDetails();
+
+        // s.DeleteTeacherDetails();
+        // s.ViewTeacherDetails();
         s.AddCourseDetails();
-        s.DeleteCourseDetails();
+        // s.DeleteCourseDetails();
         s.ViewCourseDetails();
 
         //  s.AddCourseDetails();
         // // s.ViewCourseDetails();
           
         //  s.ViewCourseDetails();
-        //  s.Student_Couse();
+          s.Student_Couse();
     }
     
 }
