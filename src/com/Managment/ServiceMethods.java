@@ -1,0 +1,296 @@
+package com.Managment;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
+
+// import javax.xml.transform.stax.StAXResult;
+
+import com.Service.ServiceInterfaces;
+
+
+public class ServiceMethods implements ServiceInterfaces {
+    static  ArrayList<Student>list=new ArrayList<>();
+     static  ArrayList<Teacher>list2=new ArrayList<>();
+      static  ArrayList<Course>list3=new ArrayList<>();
+    Scanner sc=new Scanner(System.in);
+    
+    public void AddStudentDetails(){
+        
+        System.out.println("add student details");
+        
+        
+        System.out.println("write done when adding is complete");
+        String run =" ";
+        while(!run.equalsIgnoreCase("done")){
+            Student input1=new Student();
+            System.out.println("enter id");
+            
+            int id =sc.nextInt();
+             input1.SetId(id);
+            
+            System.out.println("enter Name");
+            String name = sc.next();
+         input1.SetName(name);
+
+   System.out.println("enter Age");
+   int  age =sc.nextInt();
+
+     input1.SetAge(age);
+   
+   System.out.println("enter Grade");
+   String  grade =sc.next ();
+   input1.SetGrde(grade);
+//   list.add(new Student(id,name,age,grade));
+   list.add(input1);
+
+   System.out.println("Enter done to finish Or Enter Continue  ");
+   run=sc.next();
+
+    }
+}
+   
+
+
+ public void ViewStudentDetails(){
+
+    if(list.isEmpty()){
+        System.out.println("There is no list of student");
+    
+    }
+    //  ArrayList<Student>list=new ArrayList<>();
+for(Student S:list){
+    System.out.println(S);
+    
+}
+ }
+ public void UpdateStudentDetails(){
+      
+System.out.println("Enter Id");
+int id=sc.nextInt();
+for(Student l:list){
+    if(l.getId()==id){
+System.out.println("enter name");
+String name=sc.next();
+  l.SetName(name);
+System.out.println("Details are updated");
+    }
+}
+
+ }
+
+
+
+
+
+
+
+
+
+
+public void AddTeacherDetails(){
+        
+        System.out.println("add Teacher details");
+        
+        
+        System.out.println("write done when adding is complete");
+        String run =" ";
+        while(!run.equalsIgnoreCase("done")){
+            Teacher input1=new Teacher();
+            System.out.println("enter id");
+            
+            int id =sc.nextInt();
+             input1.SetId(id);
+            
+            System.out.println("enter Name");
+            String name = sc.next();
+         input1.SetName(name);
+
+   System.out.println("enter Subject");
+   String subject =sc.next();
+
+     input1.SetSubject(subject);
+   
+
+   
+
+   list2.add(input1);
+
+   System.out.println("Enter done to finish Or Enter Continue  ");
+   run=sc.next();
+
+    }
+}
+   
+
+
+
+
+ public void UpdateTeacherDetails(){
+      
+System.out.println("Enter Id");
+int id=sc.nextInt();
+for(Teacher l:list2){
+    if(l.getId()==id){
+System.out.println("enter name");
+String name=sc.next();
+  l.SetName(name);
+System.out.println("Details are updated");
+    }
+}
+
+
+ }
+ public void ViewTeacherDetails(){
+
+    if(list2.isEmpty()){
+        System.out.println("There is no list of student");
+    
+    }
+    //  ArrayList<Student>list=new ArrayList<>();
+for(Teacher S:list2){
+    System.out.println(S);
+    
+}
+ }
+
+
+ public void AddCourseDetails(){
+        
+        System.out.println("add Course details");
+        
+        
+        System.out.println("write done when adding is complete");
+        String run =" ";
+        while(!run.equalsIgnoreCase("done")){
+            Course input1=new Course();
+            System.out.println("enter id");
+            
+            int id =sc.nextInt();
+             input1.SetId(id);
+            
+            System.out.println("enter Name");
+            String name = sc.next();
+// sc.nextLine();
+         input1.SetName(name);
+
+
+   System.out.println("enter AssignedTeacher");
+   String as=sc.next();
+   input1.SetAs(as);
+   System.out.println("Enrolled Student");
+
+   ArrayList<String>a=new ArrayList<>();
+   System.out.println("No of Enrolled Students");
+
+int n=sc.nextInt();
+for(int i=1;i<=n;i++){
+     String sname=sc.next();
+     a.add(sname);
+   
+        }
+   
+input1.SetStudents(a);
+   list3.add(input1);
+
+   System.out.println("Enter done to finish Or Enter Continue  ");
+   run=sc.next();
+
+    }
+}
+    
+ public void ViewCourseDetails(){
+
+    if(list3.isEmpty()){
+        System.out.println("There is no list of student");
+    
+    }
+    //  ArrayList<Student>list=new ArrayList<>();
+for(Course S:list3){
+    System.out.println(S);
+    
+}
+ }
+  public void UpdateCourseDetails(){
+      
+System.out.println("Enter Id");
+int id=sc.nextInt();
+for(Course l:list3){
+    if(l.getId()==id){
+System.out.println("enter name");
+String name=sc.next();
+  l.SetName(name);
+  System.out.println("enter assigned Teacher");
+  String as=sc.next();
+  l.SetAs(as);
+
+  ArrayList<String>a=new ArrayList<>();
+  String es=sc.next();
+  a.add(es);
+  l.SetStudents(a);
+System.out.println("Details are updated");
+    }
+}
+
+
+ }
+ public void Student_Couse(){
+HashMap<String,String>m=new HashMap<>();
+Student s=new Student();
+Course c=new Course();
+String run=" ";
+// while(!run.equalsIgnoreCase("done")){
+System.out.println("enter the student name");
+String name=sc.next();
+// sc.next();
+
+for(int i=0;i<list.size();i++){
+    Student s1=list.get(i);
+    String sname=s1.getName();
+    if(sname.equals(name)){
+        System.out.println(s1.getName());
+        System.out.println("enter course");
+        String cname=sc.nextLine();
+        sc.nextLine();
+        for(int i2=0;i2<list3.size();i2++){
+            Course c1=list3.get(i2);
+            String coursename=c1.getName();
+            System.out.println(coursename);
+
+if(coursename.equals(cname)){
+   
+m.put(name, cname);
+}
+// else{
+
+//     continue;
+// }
+        }
+    }
+    // else{
+    //     continue;
+    // }
+
+    // System.out.println("enter done or continue");
+    // run=sc.nextLine();
+    // sc.nextLine();
+}
+
+System.out.println(m); 
+
+
+}
+
+    public static void main(String[] args) {
+        ServiceMethods s=new ServiceMethods();
+          // ArrayList<Student>list=new ArrayList<>();
+          s.AddStudentDetails();
+          s.ViewStudentDetails();
+         s.AddCourseDetails();
+        // s.ViewCourseDetails();
+          
+         s.ViewCourseDetails();
+         s.Student_Couse();
+    }
+    
+}
