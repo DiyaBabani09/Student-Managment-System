@@ -57,13 +57,13 @@ public class Main {
                     break;
                 case 7:
                     System.out.println("display Course By Teacher");
-                    sm.DisplayCourseByTeacher();
-                case 8:
+                    sm.DisplayCourseByTeacher();  break;
+        case 8:
                     System.exit(0);
 break;    default:System.out.println("Incorrect choice or exit ");
             }
         }   
-                while(n>=1&& n<=7);
+                while(n>=1&& n<=8);
 
         }
 

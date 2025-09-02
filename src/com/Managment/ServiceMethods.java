@@ -16,40 +16,43 @@ public class ServiceMethods implements ServiceInterfaces {
     HashMap<String,ArrayList<String>>m2 =new HashMap<>();
      Scanner sc=new Scanner(System.in);
     
-    public void AddStudentDetails(){
-        
-        System.out.println("add student details");
-        
-        
-        System.out.println("write done when adding is complete");
-        String run =" ";
-        while(!run.equalsIgnoreCase("done")){
-            Student input1=new Student();
-            System.out.println("enter id");
-            
-            int id =sc.nextInt();
-             input1.SetId(id);
-            
-            System.out.println("enter Name");
-            String name = sc.next();
-         input1.SetName(name);
+    public void AddStudentDetails() {
 
-   System.out.println("enter Age");
-   int  age =sc.nextInt();
+        System.out.println("Added student details");
 
-     input1.SetAge(age);
-   
-   System.out.println("enter Grade");
-   String  grade =sc.next ();
-   input1.SetGrde(grade);
+
+        String run = " ";
+        try {
+            while (!run.equalsIgnoreCase("done")) {
+                Student input1 = new Student();
+                System.out.println("enter id");
+
+                int id = sc.nextInt();
+                input1.SetId(id);
+
+                System.out.println("Enter Name");
+                String name = sc.next();
+                input1.SetName(name);
+
+                System.out.println("Enter Age");
+                int age = sc.nextInt();
+
+                input1.SetAge(age);
+
+                System.out.println("Enter Grade");
+                String grade = sc.next();
+                input1.SetGrde(grade);
 //   list.add(new Student(id,name,age,grade));
-   list.add(input1);
+                list.add(input1);
 
-   System.out.println("Enter done to finish Or Enter Continue  ");
-   run=sc.next();
+                System.out.println("Enter done to finish Or Enter Continue  ");
+                run = sc.next();
 
+            }
+        }catch (InputMismatchException e){
+            System.out.println("Write valid input " + e);
+        }
     }
-}
    
 
 
@@ -65,18 +68,27 @@ for(Student S:list){
     
 }
  }
- public void UpdateStudentDetails(){
-      
-System.out.println("Enter Id");
-int id=sc.nextInt();
-for(Student l:list){
-    if(l.getId()==id){
-System.out.println("enter name");
-String name=sc.next();
-  l.SetName(name);
-System.out.println("Details are updated");
-    }
-}
+ public void UpdateStudentDetails() {
+     try {
+         boolean Found=false;
+         System.out.println("Enter Id");
+         int id = sc.nextInt();
+         for (Student l : list) {
+             if (l.getId() == id) {
+                 Found=true;
+                 System.out.println("Enter Student name");
+                 String name = sc.next();
+                 l.SetName(name);
+                 System.out.println("Details are updated");
+             }
+         }
+         if(Found ==false){
+             System.out.println("Id does not exist");
+         }
+     } catch (InputMismatchException e) {
+         System.out.println("Invalid Input");
+     }
+
 
  }
 
@@ -89,59 +101,71 @@ System.out.println("Details are updated");
 
 
 
-public void AddTeacherDetails(){
-        
-        System.out.println("add Teacher details");
-        
-        
-        System.out.println("write done when adding is complete");
-        String run =" ";
-        while(!run.equalsIgnoreCase("done")){
-            Teacher input1=new Teacher();
+public void AddTeacherDetails() {
+
+    System.out.println("Add Teacher details");
+
+
+    String run = " ";
+    try {
+        while (!run.equalsIgnoreCase("done")) {
+            Teacher input1 = new Teacher();
             System.out.println("enter id");
-            
-            int id =sc.nextInt();
-             input1.SetId(id);
-            
+
+            int id = sc.nextInt();
+            input1.SetId(id);
+
             System.out.println("enter Name");
             String name = sc.next();
-         input1.SetName(name);
+            input1.SetName(name);
 
-   System.out.println("enter Subject");
-   String subject =sc.next();
+            System.out.println("enter Subject");
+            String subject = sc.next();
 
-     input1.SetSubject(subject);
-   
+            input1.SetSubject(subject);
 
-   
 
-   list2.add(input1);
+            list2.add(input1);
 
-   System.out.println("Enter done to finish Or Enter Continue  ");
-   run=sc.next();
+            System.out.println("Enter done to finish Or Enter Continue  ");
+            run = sc.next();
 
+        }
+    } catch (InputMismatchException e) {
+        System.out.println("Enter Correct Input" + e);
     }
-}
-   
 
-
-
-
- public void UpdateTeacherDetails(){
-      
-System.out.println("Enter Id");
-int id=sc.nextInt();
-for(Teacher l:list2){
-    if(l.getId()==id){
-System.out.println("enter name");
-String name=sc.next();
-  l.SetName(name);
-System.out.println("Details are updated");
-    }
 }
 
 
+
+ public void UpdateTeacherDetails() {
+
+     System.out.println("Enter Id");
+     try {
+         Boolean Found =false;
+         int id = sc.nextInt();
+
+         for (Teacher l : list2) {
+             if (l.getId() == id) {
+                 Found=true;
+                 System.out.println("Enter Teacher name");
+                 String name = sc.next();
+                 l.SetName(name);
+                 System.out.println("Details are updated");
+             }
+         }
+         if (Found == false) {
+
+             System.out.println("Id does not exist");
+         }
+     } catch (InputMismatchException e) {
+         System.out.println("Enter Correct Input");
+     }
  }
+
+
+
  public void ViewTeacherDetails(){
 
     if(list2.isEmpty()){
@@ -158,46 +182,50 @@ for(Teacher S:list2){
 
  public void AddCourseDetails(){
         
-        System.out.println("add Course details");
+        System.out.println("Add Course details");
         
         
-        System.out.println("write done when adding is complete");
+
         String run =" ";
-        while(!run.equalsIgnoreCase("done")){
-            Course input1=new Course();
-            System.out.println("enter id");
-            
-            int id =sc.nextInt();
-             input1.SetId(id);
-            
-            System.out.println("Enter  Course Name");
-            String name = sc.next();
+        try {
+            while (!run.equalsIgnoreCase("done")) {
+                Course input1 = new Course();
+                System.out.println("enter id");
+
+                int id = sc.nextInt();
+                input1.SetId(id);
+
+                System.out.println("Enter  Course Name");
+                String name = sc.next();
 // sc.nextLine();
-         input1.SetName(name);
+                input1.SetName(name);
 
 
-   System.out.println("enter AssignedTeacher");
-   String as=sc.next();
-   input1.SetAs(as);
-   System.out.println("Enrolled Student");
+                System.out.println("enter AssignedTeacher");
+                String as = sc.next();
+                input1.SetAs(as);
+                System.out.println("Enrolled Student");
 
-   ArrayList<String>a=new ArrayList<>();
-   System.out.println("No of Enrolled Students");
+                ArrayList<String> a = new ArrayList<>();
+                System.out.println("No of Enrolled Students");
 
-int n=sc.nextInt();
-for(int i=1;i<=n;i++){
-     String sname=sc.next();
-     a.add(sname);
-   
+                int n = sc.nextInt();
+                for (int i = 1; i <= n; i++) {
+                    String sname = sc.next();
+                    a.add(sname);
+
+                }
+
+                input1.SetStudents(a);
+                list3.add(input1);
+
+                System.out.println("Enter done to finish Or Enter Continue  ");
+                run = sc.next();
+
+            }
+        }catch (InputMismatchException e){
+            System.out.println("Enter Correct Course Details");
         }
-   
-input1.SetStudents(a);
-   list3.add(input1);
-
-   System.out.println("Enter done to finish Or Enter Continue  ");
-   run=sc.next();
-
-    }
 }
     
  public void ViewCourseDetails(){
@@ -213,26 +241,33 @@ for(Course S:list3){
 }
  }
   public void UpdateCourseDetails(){
-      
-System.out.println("Enter Id");
-int id=sc.nextInt();
-for(Course l:list3){
-    if(l.getId()==id){
-System.out.println("enter name");
-String name=sc.next();
-  l.SetName(name);
-  System.out.println("enter assigned Teacher");
-  String as=sc.next();
-  l.SetAs(as);
+      try {
+          Boolean Found =false;
+          System.out.println("Enter Id");
+          int id = sc.nextInt();
+          for (Course l : list3) {
+              if (l.getId() == id) {
+                  Found =true;
+                  System.out.println("enter name");
+                  String name = sc.next();
+                  l.SetName(name);
+                  System.out.println("enter assigned Teacher");
+                  String as = sc.next();
+                  l.SetAs(as);
 
-  ArrayList<String>a=new ArrayList<>();
-  String es=sc.next();
-  a.add(es);
-  l.SetStudents(a);
-System.out.println("Details are updated");
-    }
-}
-
+                  ArrayList<String> a = new ArrayList<>();
+                  String es = sc.next();
+                  a.add(es);
+                  l.SetStudents(a);
+                  System.out.println("Details are updated");
+              }
+              if(Found ==false){
+                  System.out.println("Id does not exist");
+              }
+          }
+      }catch(InputMismatchException e){
+          System.out.println("Enter Correct Id or name");
+      }
 
  }
  public void Student_Couse(){
@@ -327,17 +362,15 @@ public void AssignTeacherCourse(){
 //    System.out.println(m2);
 }
 public void DisplayCourseByTeacher(){
-    try {
+
         if(m2.isEmpty()){
             System.out.println("There is no data");
         }
         for (Map.Entry<String, ArrayList<String>> e : m2.entrySet()) {
-            System.out.println("Teacher  :  " + e.getKey() + " " + "Course : " + e.getValue());
+            System.out.println("Teacher  :  " + e.getKey() + " " + "Course :-> " + e.getValue());
         }
-    } catch (UnsupportedOperationException e) {
-        System.out.println(e + " does not exist");
     }
-}
+
 
 public void DisplayStudentsCourse() {
     try {
@@ -367,66 +400,76 @@ public void DisplayStudentsCourse() {
 
 
 
-public  void DeleteStudentDetails(){
+public  void DeleteStudentDetails() {
     System.out.println("Enter the Student id ");
-    int id=sc.nextInt();
-    boolean found= false;
-    for(int i=0;i<list.size();i++){
-        Student s=list.get(i);
-        if(s.getId()==id){
-            list.remove(i);
-            found =true;
-         
+    try {
+        int id = sc.nextInt();
+        boolean found = false;
+        for (int i = 0; i < list.size(); i++) {
+            Student s = list.get(i);
+            if (s.getId() == id) {
+                list.remove(i);
+                found = true;
+
+            }
         }
-    }
-    if(found==false){
-           System.out.println("id is not exist");
-    }
-        
-    }
-
-    public  void DeleteTeacherDetails(){
-    System.out.println("Enter the Student id ");
-    int id=sc.nextInt();
-    boolean found= false;
-    for(int i=0;i<list2.size();i++){
-        Teacher s=list2.get(i);
-        if(s.getId()==id){
-            list2.remove(i);
-            found =true;
-         
+        if (found == false) {
+            System.out.println("id is not exist");
         }
+
+    }catch(Exception e){
+        System.out.println("Invalid id");
     }
-    if(found==false){
-           System.out.println("id is not exist");
-    }
-        
-    }
+}
 
+    public  void DeleteTeacherDetails() {
+        try {
+            System.out.println("Enter the Student id ");
+            int id = sc.nextInt();
+            boolean found = false;
+            for (int i = 0; i < list2.size(); i++) {
+                Teacher s = list2.get(i);
+                if (s.getId() == id) {
+                    list2.remove(i);
+                    found = true;
 
+                }
+            }
+            if (found == false) {
+                System.out.println("id is not exist");
+            }
 
-
-
-
-public  void DeleteCourseDetails(){
-    System.out.println("Enter the Student id ");
-    int id=sc.nextInt();
-    boolean found= false;
-    for(int i=0;i<list3.size();i++){
-        Course s=list3.get(i);
-        if(s.getId()==id){
-            list3.remove(i);
-            found =true;
-         
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid Id");
         }
-    }
-    if(found==false){
-           System.out.println("id is not exist");
-    }
-        
+
     }
 
 
+
+
+public  void DeleteCourseDetails() {
+    try {
+        System.out.println("Enter the Student id ");
+        int id = sc.nextInt();
+        boolean found = false;
+        for (int i = 0; i < list3.size(); i++) {
+            Course s = list3.get(i);
+            if (s.getId() == id) {
+                list3.remove(i);
+                found = true;
+
+            }
+        }
+        if (found == false) {
+            System.out.println("id is not exist");
+        }
+
+    } catch (InputMismatchException e) {
+        System.out.println("Invalid input");
+    }
+
+}
 
 
 
