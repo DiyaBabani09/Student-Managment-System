@@ -41,27 +41,27 @@ public  static  void TeacherDetails(){
              System.out.println("Enter 2 to view Teacher details");
               System.out.println("Enter 3 to update Teacher details");
                System.out.println("Enter 4 to delete Teachert details");
+            System.out.println("Enter 5 to go back");
                    n=sc.nextInt();
                
             
             
             switch (n) {
                 case 1: s2.AddTeacherDetails();
-                System.out.println("adding");
+
                 break;
                 
                 case 2:s2.ViewTeacherDetails();
-                System.out.println("view");
+
                 break;
                 
                 case 3:s2.UpdateTeacherDetails();
-                System.out.println("updating");
                 break;
 
                 case 4: s2.DeleteTeacherDetails();
-                System.out.println("deleting");
+
                 break;
-               
+
                 default:System.out.println("Incorrect choice");
             }
         }   
