@@ -50,25 +50,26 @@ public  static  void CourseDetails(){
              System.out.println("Enter 2 to view Course details");
               System.out.println("Enter 3 to update Course details");
                System.out.println("Enter 4 to delete Course details");
+            System.out.println("Enter 5  to go back");
                    n=sc.nextInt();
                
             
             
             switch (n) {
                 case 1: s2.AddCourseDetails();
-                System.out.println("adding");
+
                 break;
                 
                 case 2:s2.ViewCourseDetails();
-                System.out.println("view");
+
                 break;
                 
                 case 3:s2.UpdateCourseDetails();
-                System.out.println("updating");
+
                 break;
 
                 case 4: s2.DeleteCourseDetails();
-                System.out.println("deleting");
+
                 break;
                
                 default:System.out.println("Incorrect choice");
@@ -79,10 +80,7 @@ public  static  void CourseDetails(){
         }
    
    
-    public static void main(String[] args) {
-        
-CourseDetails();
-    }
+
 
 
 }
