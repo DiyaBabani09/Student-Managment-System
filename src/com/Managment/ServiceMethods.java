@@ -1,8 +1,7 @@
 package com.Managment;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Scanner;
+
+import java.util.*;
 
 // import javax.xml.transform.stax.StAXResult;
 
@@ -13,6 +12,8 @@ public class ServiceMethods implements ServiceInterfaces {
     static  ArrayList<Student>list=new ArrayList<>();
      static  ArrayList<Teacher>list2=new ArrayList<>();
       static  ArrayList<Course>list3=new ArrayList<>();
+    HashMap<String,String>m=new HashMap<>();
+    HashMap<String,ArrayList<String>>m2 =new HashMap<>();
      Scanner sc=new Scanner(System.in);
     
     public void AddStudentDetails(){
@@ -169,7 +170,7 @@ for(Teacher S:list2){
             int id =sc.nextInt();
              input1.SetId(id);
             
-            System.out.println("enter Name");
+            System.out.println("Enter  Course Name");
             String name = sc.next();
 // sc.nextLine();
          input1.SetName(name);
@@ -235,49 +236,51 @@ System.out.println("Details are updated");
 
  }
  public void Student_Couse(){
-HashMap<String,String>m=new HashMap<>();
+//HashMap<String,String>m=new HashMap<>();
 Student s=new Student();
 Course c=new Course();
 String run=" ";
 // while(!run.equalsIgnoreCase("done")){
 System.out.println("enter the student name");
 String name=sc.next();
- 
 
+     boolean found= false;
+     boolean found2=false;
 for(int i=0;i<list.size();i++){
     Student s1=list.get(i);
     String sname=s1.getName();
-    boolean found= false;
-    boolean found2=false;
+
     if(sname.equals(name)){
         found=true;
         System.out.println(s1.getName());
-        System.out.println("enter course");
+        System.out.println("Enter course");
         String cname=sc.next();
         
-        for(int i2=0;i2<list3.size();i2++){
-            Course c1=list3.get(i2);
-            String coursename=c1.getName();
-            
-            if(cname.equals(coursename)){
-    System.out.println(coursename);
-     System.out.println(coursename);
-m.put(name,cname);
-System.out.println(m);
-}
-// else{
+        for(int i2=0;i2<list3.size();i2++) {
 
-//     continue;
-// }
+            Course c1 = list3.get(i2);
+            String coursename = c1.getName();
+            if (cname.equals(coursename)) {
+                found2 = true;
+                System.out.println(coursename);
+                System.out.println(coursename);
+                m.put(name, cname);
+                System.out.println(m);
+            }
+        }
+if(found2==false){
+    System.out.println("course does not exist");
         }
     }
-    // else{
-    //     continue;
-    // }
+
+
 
     // System.out.println("enter done or continue");
     // run=sc.nextLine();
     // sc.nextLine();
+}
+if(found==false){
+    System.out.println("name does not exist ...Please First add Student details");
 }
 for(String key:m.keySet()){
 System.out.println(key); 
@@ -285,6 +288,85 @@ System.out.println(key);
 
 
 }
+public void AssignTeacherCourse(){
+        Teacher T=new Teacher();
+        Course c=new Course();
+    System.out.println("Enter Teacher name");
+    String name=sc.next();
+    boolean found =false;
+    try {
+        for (int i = 0; i < list2.size(); i++) {
+            Teacher T1 = list2.get(i);
+            String tname = T1.getName();
+//            System.out.println(T1.getName());
+            if (tname.equals(name)) {
+                found=true;
+                System.out.println("Enter no of Course");
+                int n = sc.nextInt();
+                System.out.println("Enter Course name");
+                ArrayList<String> a = new ArrayList<>();
+                for (int k = 1; k <= n; k++) {
+
+                    String cname = sc.next();
+
+                    a.add(cname);
+                }
+                m2.put(name, a);
+            }
+
+        }
+        if(found==false){
+            System.out.println("Teacher name does not exist");
+        }
+    }catch(IndexOutOfBoundsException e){
+        System.out.println("please enter the perfect no of course "+ e);
+    }catch(InputMismatchException e){
+        System.out.println("Invalid Input");
+    }
+
+//    System.out.println(m2);
+}
+public void DisplayCourseByTeacher(){
+    try {
+        if(m2.isEmpty()){
+            System.out.println("There is no data");
+        }
+        for (Map.Entry<String, ArrayList<String>> e : m2.entrySet()) {
+            System.out.println("Teacher  :  " + e.getKey() + " " + "Course : " + e.getValue());
+        }
+    } catch (UnsupportedOperationException e) {
+        System.out.println(e + " does not exist");
+    }
+}
+
+public void DisplayStudentsCourse() {
+    try {
+        if(m.isEmpty()){
+            System.out.println("There is no data");
+        }
+        for (Map.Entry<String, String> e : m.entrySet()) {
+            System.out.println("Student :  " + e.getKey() + " " + "Course : " + e.getValue());
+        }
+    } catch (UnsupportedOperationException e) {
+        System.out.println(e + " does not exist");
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 public  void DeleteStudentDetails(){
     System.out.println("Enter the Student id ");
     int id=sc.nextInt();
@@ -357,23 +439,25 @@ public  void DeleteCourseDetails(){
     public static void main(String[] args) {
         ServiceMethods s=new ServiceMethods();
           // ArrayList<Student>list=new ArrayList<>();
-          s.AddStudentDetails();
-          s.ViewStudentDetails();
+//          s.AddStudentDetails();
+//          s.ViewStudentDetails();
         
 
-        // s.AddTeacherDetails();
+         s.AddTeacherDetails();
 
         // s.DeleteTeacherDetails();
         // s.ViewTeacherDetails();
-        s.AddCourseDetails();
-        // s.DeleteCourseDetails();
-        s.ViewCourseDetails();
+//      s.AddCourseDetails();
+//        // s.DeleteCourseDetails();
+//        s.ViewCourseDetails();
 
         //  s.AddCourseDetails();
         // // s.ViewCourseDetails();
           
         //  s.ViewCourseDetails();
-          s.Student_Couse();
+//          s.Student_Couse();
+//          s.DisplayStudentsCourse();
+        s.AssignTeacherCourse();
     }
     
 }
