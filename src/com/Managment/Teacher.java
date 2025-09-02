@@ -70,9 +70,6 @@ public  static  void TeacherDetails(){
         }
    
    
-    public static void main(String[] args) {
-        
-TeacherDetails();
-    }
+
    
 }

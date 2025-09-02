@@ -272,56 +272,58 @@ for(Course S:list3){
  }
  public void Student_Couse(){
 //HashMap<String,String>m=new HashMap<>();
-Student s=new Student();
-Course c=new Course();
-String run=" ";
-// while(!run.equalsIgnoreCase("done")){
-System.out.println("enter the student name");
-String name=sc.next();
+     try {
+         Student s = new Student();
+         Course c = new Course();
+         String run = " ";
 
-     boolean found= false;
-     boolean found2=false;
-for(int i=0;i<list.size();i++){
-    Student s1=list.get(i);
-    String sname=s1.getName();
+         System.out.println("enter the student name");
+         String name = sc.next();
 
-    if(sname.equals(name)){
-        found=true;
-        System.out.println(s1.getName());
-        System.out.println("Enter course");
-        String cname=sc.next();
-        
-        for(int i2=0;i2<list3.size();i2++) {
+         boolean found = false;
+         boolean found2 = false;
+         for (int i = 0; i < list.size(); i++) {
+             Student s1 = list.get(i);
+             String sname = s1.getName();
 
-            Course c1 = list3.get(i2);
-            String coursename = c1.getName();
-            if (cname.equals(coursename)) {
-                found2 = true;
-                System.out.println(coursename);
-                System.out.println(coursename);
-                m.put(name, cname);
-                System.out.println(m);
-            }
-        }
-if(found2==false){
-    System.out.println("course does not exist");
-        }
-    }
+             if (sname.equals(name)) {
+                 found = true;
+                 System.out.println(s1.getName());
+                 System.out.println("Enter course");
+                 String cname = sc.next();
 
+                 for (int i2 = 0; i2 < list3.size(); i2++) {
 
-
-    // System.out.println("enter done or continue");
-    // run=sc.nextLine();
-    // sc.nextLine();
-}
-if(found==false){
-    System.out.println("name does not exist ...Please First add Student details");
-}
-for(String key:m.keySet()){
-System.out.println(key); 
-}
+                     Course c1 = list3.get(i2);
+                     String coursename = c1.getName();
+                     if (cname.equals(coursename)) {
+                         found2 = true;
+                         System.out.println(coursename);
+                         System.out.println(coursename);
+                         m.put(name, cname);
+                         System.out.println(m);
+                     }
+                 }
+                 if (found2 == false) {
+                     System.out.println("course does not exist");
+                 }
+             }
 
 
+             // System.out.println("enter done or continue");
+             // run=sc.nextLine();
+             // sc.nextLine();
+         }
+         if (found == false) {
+             System.out.println("name does not exist ...Please First add Student details");
+         }
+         for (String key : m.keySet()) {
+             System.out.println(key);
+         }
+
+     }catch (InputMismatchException e){
+         System.out.println("Enter Correct Input");
+     }
 }
 public void AssignTeacherCourse(){
         Teacher T=new Teacher();
