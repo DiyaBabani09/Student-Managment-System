@@ -1,15 +1,14 @@
 import java.util.Scanner;
 
-import com.Managment.ServiceMethods;
-import  com.Managment.Student;
-import com.Managment.Teacher;
-import com.Managment.Course;import javax.sound.midi.Soundbank;
+import com.Managment.*;
+
+import javax.sound.midi.Soundbank;
 
 public class Main {
     public static void main(String[] args) {
-        Student S1=new Student();
-        Teacher T1=new Teacher();
-        Course c1 =new Course();
+        StudentManager S1=new StudentManager();
+        TeacherManager T1=new TeacherManager();
+        CourseManager c1 =new CourseManager();
         ServiceMethods sm=new ServiceMethods();
         System.out.println("hi");
   Scanner sc =new Scanner(System.in);
