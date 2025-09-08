@@ -12,8 +12,8 @@ public class ServiceMethods implements ServiceInterfaces {
     static  ArrayList<Student>list=new ArrayList<>();
      static  ArrayList<Teacher>list2=new ArrayList<>();
       static  ArrayList<Course>list3=new ArrayList<>();
-    HashMap<String,String>m=new HashMap<>();
-    HashMap<String,ArrayList<String>>m2 =new HashMap<>();
+    HashMap<Integer,String>m=new HashMap<>();
+    HashMap<Integer,ArrayList<String>>m2 =new HashMap<>();
      Scanner sc=new Scanner(System.in);
     
     public void AddStudentDetails() {
@@ -82,7 +82,7 @@ for(Student S:list){
                  System.out.println("Details are updated");
              }
          }
-         if(Found ==false){
+         if(!Found){
              System.out.println("Id does not exist");
          }
      } catch (InputMismatchException e) {
@@ -155,7 +155,7 @@ public void AddTeacherDetails() {
                  System.out.println("Details are updated");
              }
          }
-         if (Found == false) {
+         if (!Found) {
 
              System.out.println("Id does not exist");
          }
@@ -242,7 +242,7 @@ for(Course S:list3){
  }
   public void UpdateCourseDetails(){
       try {
-          Boolean Found =false;
+          boolean Found =false;
           System.out.println("Enter Id");
           int id = sc.nextInt();
           for (Course l : list3) {
@@ -261,7 +261,7 @@ for(Course S:list3){
                   l.SetStudents(a);
                   System.out.println("Details are updated");
               }
-              if(Found ==false){
+              if(!Found){
                   System.out.println("Id does not exist");
               }
           }
@@ -277,49 +277,46 @@ for(Course S:list3){
          Course c = new Course();
          String run = " ";
 
-         System.out.println("enter the student name");
-         String name = sc.next();
+         System.out.println("enter the student id");
+         int id  = sc.nextInt();
 
          boolean found = false;
          boolean found2 = false;
-         for (int i = 0; i < list.size(); i++) {
-             Student s1 = list.get(i);
-             String sname = s1.getName();
+         for(Student s1:list){
 
-             if (sname.equals(name)) {
+             int id1 = s1.getId();
+
+             if (id1==id){
                  found = true;
-                 System.out.println(s1.getName());
+
                  System.out.println("Enter course");
                  String cname = sc.next();
+                 for(Course c1:list3){
 
-                 for (int i2 = 0; i2 < list3.size(); i2++) {
-
-                     Course c1 = list3.get(i2);
-                     String coursename = c1.getName();
-                     if (cname.equals(coursename)) {
+//                 for (int i2 = 0; i2 < list3.size(); i2++) {
+//
+//                     Course c1 = list3.get(i2);
+                     String courseName = c1.getName();
+                     if (cname.equals(courseName)) {
                          found2 = true;
-                         System.out.println(coursename);
-                         System.out.println(coursename);
-                         m.put(name, cname);
+                         System.out.println(courseName);
+                         System.out.println(courseName);
+                         m.put(id, cname);
                          System.out.println(m);
                      }
                  }
-                 if (found2 == false) {
+                 if (!found2) {
                      System.out.println("course does not exist");
                  }
              }
 
 
-             // System.out.println("enter done or continue");
-             // run=sc.nextLine();
-             // sc.nextLine();
+
          }
-         if (found == false) {
+         if (!found ) {
              System.out.println("name does not exist ...Please First add Student details");
          }
-         for (String key : m.keySet()) {
-             System.out.println(key);
-         }
+
 
      }catch (InputMismatchException e){
          System.out.println("Enter Correct Input");
@@ -328,15 +325,15 @@ for(Course S:list3){
 public void AssignTeacherCourse(){
         Teacher T=new Teacher();
         Course c=new Course();
-    System.out.println("Enter Teacher name");
-    String name=sc.next();
+    System.out.println("Enter Teacher id");
+    int id=sc.nextInt();
     boolean found =false;
     try {
-        for (int i = 0; i < list2.size(); i++) {
-            Teacher T1 = list2.get(i);
-            String tname = T1.getName();
-//            System.out.println(T1.getName());
-            if (tname.equals(name)) {
+        for(Teacher T1:list2){
+//
+            int id1 = T1.getId();
+//
+            if (id1==id) {
                 found=true;
                 System.out.println("Enter no of Course");
                 int n = sc.nextInt();
@@ -348,11 +345,11 @@ public void AssignTeacherCourse(){
 
                     a.add(cname);
                 }
-                m2.put(name, a);
+                m2.put(id, a);
             }
 
         }
-        if(found==false){
+        if(!found){
             System.out.println("Teacher name does not exist");
         }
     }catch(IndexOutOfBoundsException e){
@@ -368,8 +365,8 @@ public void DisplayCourseByTeacher(){
         if(m2.isEmpty()){
             System.out.println("There is no data");
         }
-        for (Map.Entry<String, ArrayList<String>> e : m2.entrySet()) {
-            System.out.println("Teacher  :  " + e.getKey() + " " + "Course :-> " + e.getValue());
+        for (Map.Entry<Integer, ArrayList<String>> e : m2.entrySet()) {
+            System.out.println("Teacher  : ->   " + e.getKey() + " " + "Course :-> " + e.getValue());
         }
     }
 
@@ -379,8 +376,8 @@ public void DisplayStudentsCourse() {
         if(m.isEmpty()){
             System.out.println("There is no data");
         }
-        for (Map.Entry<String, String> e : m.entrySet()) {
-            System.out.println("Student :  " + e.getKey() + " " + "Course : " + e.getValue());
+        for (Map.Entry<Integer, String> e : m.entrySet()) {
+            System.out.println("Student :  " + e.getKey() + "        " + "Course :  " + e.getValue());
         }
     } catch (UnsupportedOperationException e) {
         System.out.println(e + " does not exist");
@@ -415,7 +412,7 @@ public  void DeleteStudentDetails() {
 
             }
         }
-        if (found == false) {
+        if(!found) {
             System.out.println("id is not exist");
         }
 
@@ -437,7 +434,7 @@ public  void DeleteStudentDetails() {
 
                 }
             }
-            if (found == false) {
+            if(!found){
                 System.out.println("id is not exist");
             }
 
@@ -463,7 +460,7 @@ public  void DeleteCourseDetails() {
 
             }
         }
-        if (found == false) {
+        if(!found) {
             System.out.println("id is not exist");
         }
 

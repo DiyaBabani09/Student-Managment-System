@@ -3,7 +3,7 @@ package com.Managment;
 import java.util.Scanner;
 
 public class StudentManager {
-    public static void StudentDetails() {
+    public  void StudentDetails() {
         ServiceMethods s = new ServiceMethods();
         Scanner sc = new Scanner(System.in);
 
