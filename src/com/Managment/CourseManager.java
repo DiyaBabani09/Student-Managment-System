@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class CourseManager {
 
-    public  static  void CourseDetails(){
+    public   void CourseDetails(){
         ServiceMethods s2=new ServiceMethods();
         Scanner sc =new Scanner(System.in);
         // System.out.println("choice  details");
