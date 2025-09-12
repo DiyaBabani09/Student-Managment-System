@@ -4,8 +4,10 @@ import java.util.Scanner;
 
 public class TeacherManager {
     public void TeacherDetails() {
-        ServiceMethods s2 = new ServiceMethods();
+//        ServiceMethods s2 = new ServiceMethods();
+        JdbcConnection c=new JdbcConnection();
         Scanner sc = new Scanner(System.in);
+
         // System.out.println("choice  details");
         System.out.println("Enter choice");
         int n = 0;
@@ -20,21 +22,25 @@ public class TeacherManager {
 
             switch (n) {
                 case 1:
-                    s2.AddTeacherDetails();
+                    c.createconnection();
+                    c.addTeacher();
 
                     break;
 
                 case 2:
-                    s2.ViewTeacherDetails();
+                    c.createconnection();
+                    c.viewTeacherdetails();
 
                     break;
 
                 case 3:
-                    s2.UpdateTeacherDetails();
+                    c.createconnection();
+                    c.UpdateTeacher();
                     break;
 
                 case 4:
-                    s2.DeleteTeacherDetails();
+                    c.createconnection();
+                    c.DeleteTeacher();
 
                     break;
 

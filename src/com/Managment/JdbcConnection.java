@@ -1,5 +1,7 @@
 package com.Managment;
 
+import com.mysql.cj.protocol.Resultset;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -11,7 +13,7 @@ public class JdbcConnection {
     static String url = "jdbc:mysql://localhost:3306/Managment";
     static String user = "root";
     static String password = "root12";
-    Connection con ;
+    Connection con;
 
     public void createconnection() {
         try {
@@ -24,7 +26,7 @@ public class JdbcConnection {
 
     public void addStudent() {
 
-        String run =" ";
+        String run = " ";
         try {
             String sql = "Insert into Student  Values(?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(sql);
@@ -58,101 +60,104 @@ public class JdbcConnection {
 
                     run = sc.next();
                 }
+                con.close();
             } catch (InputMismatchException e) {
                 System.out.println(e);
 
             }
 
-            int arr[]=ps.executeBatch();
+            int arr[] = ps.executeBatch();
         } catch (SQLException e) {
             System.out.println(e);
-//        }finally {
-//            con.close();
-//        }
+
         }
     }
-    public void viewStudentdetails(){
-        try{
-            Statement stmt  = con.createStatement();
+
+    public void viewStudentdetails() {
+        try {
+            Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM Student");
 
 //        System.out.println("Connection Successful!");
 
             while (rs.next()) {
                 System.out.println("id :   " + rs.getInt("id"));
-                System.out.println("name: "+  rs.getString("name"));
-                System.out.println("age::    "+  rs.getInt("age"));
-                System.out.println("grade::  " +  rs.getString("grade").toUpperCase());
+                System.out.println("name: " + rs.getString("name"));
+                System.out.println("age::    " + rs.getInt("age"));
+                System.out.println("grade::  " + rs.getString("grade").toUpperCase());
             }
-        }
-        catch(SQLException e){
-            System.out.println(e );
+            con.close();
+        } catch (SQLException e) {
+            System.out.println(e);
         }
     }
-    public void UpdateStudent(){
+
+    public void UpdateStudent() {
 //        boolean Found=false;
         try {
 
-            String sql="update Student set name=?,age=?,grade=? where id=?";
-            PreparedStatement st=con.prepareStatement(sql);
+            String sql = "update Student set name=?,age=?,grade=? where id=?";
+            PreparedStatement st = con.prepareStatement(sql);
 
-            Student s=new Student();
+            Student s = new Student();
 
             System.out.println("Enter Id");
             int id = sc.nextInt();
 
-                    st.setInt(4,id);
-                    System.out.println("Enter Student name");
-                    String name = sc.next();
-                    s.SetName(name);
-                    st.setString(1,s.getName());
-                    System.out.println("Enter Student age");
-                    int age=sc.nextInt();
-                    s.SetAge(age);
-                    st.setInt(2,s.getAge());
-                    System.out.println("Enter Student grade");
-                    String grade=sc.next();
-                    s.SetGrde(grade);
-                    st.setString(3,grade);
-                    System.out.println("Details are updated");
+            st.setInt(4, id);
+            System.out.println("Enter Student name");
+            String name = sc.next();
+            s.SetName(name);
+            st.setString(1, s.getName());
+            System.out.println("Enter Student age");
+            int age = sc.nextInt();
+            s.SetAge(age);
+            st.setInt(2, s.getAge());
+            System.out.println("Enter Student grade");
+            String grade = sc.next();
+            s.SetGrde(grade);
+            st.setString(3, grade);
+            System.out.println("Details are updated");
 
-                int rowsaffecteed=st.executeUpdate();
-                if(rowsaffecteed<=0){
-                    System.out.println("Not Updated Successfully,Id does not exist");
-                }
-                else{
-                    System.out.println("Updated SuccessFully");
-                }
-            }catch(SQLException e) {
+            int rowsaffecteed = st.executeUpdate();
+            if (rowsaffecteed <= 0) {
+                System.out.println("Not Updated Successfully,Id does not exist");
+            } else {
+                System.out.println("Updated SuccessFully");
+            }
+            con.close();
+        } catch (SQLException e) {
             System.out.println(e);
 
 
-}
+        }
 
 
     }
-    public void DeleteStudent(){
-try{
-    String sql="Delete from Student where id=?";
-    PreparedStatement st=con.prepareStatement(sql);
-    System.out.println("Enter Id");
-    int id=sc.nextInt();
-    st.setInt(1,id);
-    int rowsaffecteed=st.executeUpdate();
-    if(rowsaffecteed<=0){
-        System.out.println("Not Deleted Successfully,Id does not exist");
-    }
-    else{
-        System.out.println("Deleted SuccessFully");
+
+    public void DeleteStudent() {
+        try {
+            String sql = "Delete from Student where id=?";
+            PreparedStatement st = con.prepareStatement(sql);
+            System.out.println("Enter Id");
+            int id = sc.nextInt();
+            st.setInt(1, id);
+            int rowsaffecteed = st.executeUpdate();
+            if (rowsaffecteed <= 0) {
+                System.out.println("Not Deleted Successfully,Id does not exist");
+            } else {
+                System.out.println("Deleted SuccessFully");
+            }
+con.close();
+        }
+        catch (SQLException e) {
+            System.out.println(e);
+        }
     }
 
-}catch(SQLException e){
-    System.out.println(e);
-}
-    }
-    public void addTeacher()  {
+    public void addTeacher() {
 
-        String run =" ";
+        String run = " ";
         try {
             String sql = "Insert into Teacher  Values(?,?,?)";
             PreparedStatement ps = con.prepareStatement(sql);
@@ -171,8 +176,6 @@ try{
                     ps.setString(2, input1.getName());
 
 
-
-
                     System.out.println("Enter subject");
                     String grade = sc.next();
                     input1.SetSubject(grade);
@@ -183,67 +186,70 @@ try{
 
                     run = sc.next();
                 }
+                con.close();
             } catch (InputMismatchException e) {
                 System.out.println(e);
 
             }
 
-            int arr[]=ps.executeBatch();
+            int arr[] = ps.executeBatch();
         } catch (SQLException e) {
             System.out.println(e);
         }
 
     }
-    public void viewTeacherdetails(){
-        try{
-            Statement stmt  = con.createStatement();
+
+    public void viewTeacherdetails() {
+        try {
+            Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM Teacher");
 
 //        System.out.println("Connection Successful!");
 
             while (rs.next()) {
                 System.out.println("id :   " + rs.getInt("id"));
-                System.out.println("name: "+  rs.getString("name"));
-                System.out.println("subject::  " +  rs.getString("subject"));
+                System.out.println("name: " + rs.getString("name"));
+                System.out.println("subject::  " + rs.getString("subject"));
             }
-        }
-        catch(SQLException e){
-            System.out.println(e );
+            con.close();
+        } catch (SQLException e) {
+            System.out.println(e);
         }
     }
-    public void UpdateTeacher(){
+
+    public void UpdateTeacher() {
 //        boolean Found=false;
         try {
 
-            String sql="update Teacher  set name=?,subject=? where id=?";
-            PreparedStatement st=con.prepareStatement(sql);
+            String sql = "update Teacher  set name=?,subject=? where id=?";
+            PreparedStatement st = con.prepareStatement(sql);
 
-            Teacher s=new Teacher();
+            Teacher s = new Teacher();
 
             System.out.println("Enter Id");
             int id = sc.nextInt();
 
-            st.setInt(3,id);
+            st.setInt(3, id);
             System.out.println("Enter Teacher name");
             String name = sc.next();
             s.SetName(name);
-            st.setString(1,s.getName());
+            st.setString(1, s.getName());
 
 
             System.out.println("Enter Subject");
-            String sub=sc.next();
+            String sub = sc.next();
             s.SetSubject(sub);
-            st.setString(2,sub);
+            st.setString(2, sub);
             System.out.println("Details are updated");
 
-            int rowsaffecteed=st.executeUpdate();
-            if(rowsaffecteed<=0){
+            int rowsaffecteed = st.executeUpdate();
+            if (rowsaffecteed <= 0) {
                 System.out.println("Not Updated Successfully,Id does not exist");
-            }
-            else{
+            } else {
                 System.out.println("Updated SuccessFully");
             }
-        }catch(SQLException e) {
+            con.close();
+        } catch (SQLException e) {
             System.out.println(e);
 
 
@@ -251,22 +257,23 @@ try{
 
 
     }
-    public void DeleteTeacher(){
-        try{
-            String sql="Delete from Teacher where id=?";
-            PreparedStatement st=con.prepareStatement(sql);
+
+    public void DeleteTeacher() {
+        try {
+            String sql = "Delete from Teacher where id=?";
+            PreparedStatement st = con.prepareStatement(sql);
             System.out.println("Enter Id");
-            int id=sc.nextInt();
-            st.setInt(1,id);
-            int rowsaffecteed=st.executeUpdate();
-            if(rowsaffecteed<=0){
+            int id = sc.nextInt();
+            st.setInt(1, id);
+            int rowsaffecteed = st.executeUpdate();
+            if (rowsaffecteed <= 0) {
                 System.out.println("Not Deleted Successfully,Id does not exist");
-            }
-            else{
+            } else {
                 System.out.println("Deleted SuccessFully");
             }
-
-        }catch(SQLException e){
+con.close();
+        }
+        catch (SQLException e) {
             System.out.println(e);
         }
     }
@@ -274,7 +281,7 @@ try{
     //Course Details
     public void addCourseDetails() {
 
-        String run =" ";
+        String run = " ";
         try {
             String sql = "Insert into Course  Values(?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(sql);
@@ -293,13 +300,13 @@ try{
                     ps.setString(2, input1.getName());
 
                     System.out.println("Enter AssignedTeacher");
-                    String  as = sc.next();
+                    String as = sc.next();
                     input1.SetAs(as);
                     ps.setString(3, input1.getSubjetc());
 
 
                     System.out.println("Enter no of Enrolled Student ");
-                    int n=sc.nextInt();
+                    int n = sc.nextInt();
                     ArrayList<String> a = new ArrayList<>();
                     for (int i = 1; i <= n; i++) {
                         String sname = sc.next();
@@ -309,7 +316,7 @@ try{
                     }
                     String Sl = String.join(",", a);
                     input1.SetStudents(a);
-                    ps.setString(4,Sl);
+                    ps.setString(4, Sl);
 
 
                     System.out.println("Enter done to finish Or Enter Continue  ");
@@ -317,7 +324,8 @@ try{
 
                     run = sc.next();
                 }
-                int arr[]=ps.executeBatch();
+                int arr[] = ps.executeBatch();
+                con.close();
             } catch (InputMismatchException e) {
                 System.out.println(e);
 
@@ -326,72 +334,72 @@ try{
 //      int arr[]=ps.executeBatch();
         } catch (SQLException e) {
             System.out.println(e);
-//        }finally {
-//            con.close();
-//        }
+
         }
     }
-    public void viewCoursedetails(){
-        try{
-            Statement stmt  = con.createStatement();
+
+    public void viewCoursedetails() {
+        try {
+            Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM Course");
 
 //        System.out.println("Connection Successful!");
 
             while (rs.next()) {
                 System.out.println("id :   " + rs.getInt("id"));
-                System.out.println("name: "+  rs.getString("name"));
-                System.out.println("Teacher::    "+  rs.getString("assignedTeacher"));
-                System.out.println("EnrolledStudent::  " +  rs.getString("EnrolledStudents;"));
+                System.out.println("name: " + rs.getString("name"));
+                System.out.println("Teacher::    " + rs.getString("assignedTeacher"));
+                System.out.println("EnrolledStudent::  " + rs.getString("EnrolledStudents;"));
             }
-        }
-        catch(SQLException e){
-            System.out.println(e );
+            con.close();
+        } catch (SQLException e) {
+            System.out.println(e);
         }
     }
-    public void UpdateCourse(){
+
+    public void UpdateCourse() {
 //        boolean Found=false;
         try {
 
-            String sql="update Course set name=?,assignedTeacher=?,EnrolledStudents;=? where id=?";
-            PreparedStatement st=con.prepareStatement(sql);
+            String sql = "update Course set name=?,assignedTeacher=?,EnrolledStudents;=? where id=?";
+            PreparedStatement st = con.prepareStatement(sql);
 
-            Course s=new Course();
+            Course s = new Course();
 
             System.out.println("Enter Id");
             int id = sc.nextInt();
 
-            st.setInt(4,id);
+            st.setInt(4, id);
             System.out.println("Enter Course name");
             String name = sc.next();
             s.SetName(name);
-            st.setString(1,s.getName());
+            st.setString(1, s.getName());
             System.out.println("Enter AssignedTeacher");
-            String as=sc.next();
+            String as = sc.next();
             s.SetAs(as);
-            st.setString(2,s.getSubjetc());
+            st.setString(2, s.getSubjetc());
             System.out.println("Enter no of Enrolled Students");
-            int n=sc.nextInt();
+            int n = sc.nextInt();
             ArrayList<String> a = new ArrayList<>();
             for (int i = 1; i <= n; i++) {
                 String sname = sc.next();
                 a.add(sname);
 
             }
-            String sl=String.join(" ",a);
+            String sl = String.join(" ", a);
             s.SetStudents(a);
-            st.setString(4,sl);
+            st.setString(4, sl);
 
             System.out.println("Details are updated");
 
-            int rowsaffecteed=st.executeUpdate();
-            if(rowsaffecteed<=0){
+            int rowsaffecteed = st.executeUpdate();
+            if (rowsaffecteed <= 0) {
                 System.out.println("Not Updated Successfully,Id does not exist");
-            }
-            else{
+            } else {
                 System.out.println("Updated SuccessFully");
             }
-        }catch(SQLException e) {
+            con.close();
+        } catch (SQLException e) {
             System.out.println(e);
 
 
@@ -399,71 +407,126 @@ try{
 
 
     }
-    public void DeleteCourse(){
-        try{
-            String sql="Delete from Course where id=?";
-            PreparedStatement st=con.prepareStatement(sql);
+
+    public void DeleteCourse() {
+        try {
+            String sql = "Delete from Course where id=?";
+            PreparedStatement st = con.prepareStatement(sql);
             System.out.println("Enter Id");
-            int id=sc.nextInt();
-            st.setInt(1,id);
-            int rowsaffecteed=st.executeUpdate();
-            if(rowsaffecteed<=0){
+            int id = sc.nextInt();
+            st.setInt(1, id);
+            int rowsaffecteed = st.executeUpdate();
+            if (rowsaffecteed <= 0) {
                 System.out.println("Not Deleted Successfully,Id does not exist");
-            }
-            else{
+            } else {
                 System.out.println("Deleted SuccessFully");
             }
+            con.close();
 
-        }catch(SQLException e){
+        } catch (SQLException e) {
             System.out.println(e);
         }
     }
-    public void Enrolled_Student(){
-        try{
-            String Sql= "INSERT INTO Enrolled (s_id, c_id, course_name) "
+
+    public void Enrolled_Student() {
+        this.createconnection();
+        try {
+            String Sql = "INSERT INTO Enrolled (s_id, c_id, course_name) "
                     + "SELECT s.id, c.id, c.name "
                     + "FROM Student s, Course c "
                     + "WHERE s.name = ? AND c.name = ?";
 
-            PreparedStatement ps =con.prepareStatement(Sql);
+            PreparedStatement ps = con.prepareStatement(Sql);
             System.out.println("Enter Student name");
-            String name=sc.next();
+            String name = sc.next();
             System.out.println("Enter course cname");
-            String cname=sc.next();
-            ps.setString(1,name);
-            ps.setString(2,cname);
+            String cname = sc.next();
+            ps.setString(1, name);
+            ps.setString(2, cname);
             int rowsAffected = ps.executeUpdate();
             if (rowsAffected > 0) {
                 System.out.println("Successfully enrolled student");
             } else {
                 System.out.println("Failed to enrol");
             }
+            con.close();
 
-        }catch(SQLException e){
+        } catch (SQLException e) {
             System.out.println(e);
         }
     }
-public void DisplayEnrolledStudent(){
+
+    public void DisplayEnrolledStudent() {
+        this.createconnection();
         try {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM Enrolled");
             while (rs.next()) {
                 System.out.println("id :   " + rs.getInt("enrollment_id"));
-                System.out.println("Student Id: "+  rs.getInt("s_id"));
-                System.out.println("Course Id::    "+  rs.getInt("c_id"));
-                System.out.println("Course Name::  " +  rs.getString("course_name"));
+                System.out.println("Student Id: " + rs.getInt("s_id"));
+                System.out.println("Course Id::    " + rs.getInt("c_id"));
+                System.out.println("Course Name::  " + rs.getString("course_name"));
+
             }
-        }catch(SQLException e){
-            System.out.println( e);
+            con.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+
         }
 
+    }
+
+    public void AssignedTeacher() {
+        this.createconnection();
+        try {
+            String sql = "insert into AssignedTeacher(Teacher_id,C_id,course_name,Teacher_name) " +
+                    "Select T.id, C.id, C.name, " +
+                    "T.name from Teacher as T INNER JOIN Course as C  ON T.name = ? AND C.name = ? ";
+            PreparedStatement ps = con.prepareStatement(sql);
+            System.out.println("Enter Teacher name");
+            String name=sc.next();
+            ps.setString(1,name);
+            System.out.println("Enter Course name");
+            String cname=sc.next();
+            ps.setString(2,cname);
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Successfully Teacher Assigned");
+            } else {
+                System.out.println("Failed to enrol");
+            }
+            con.close();
+    }catch(SQLException e){
+
+        System.out.println(e);
+
+    }
+}
+public void DisplayAssignedTeacher(){
+        this.createconnection();
+        try{
+            String sql="Select * from AssignedTeacher";
+            PreparedStatement ps=con.prepareStatement(sql);
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+                System.out.println("AssignedId:: "+rs.getInt("AT_id"));
+                System.out.println("TeacherId:: "+rs.getInt("Teacher_id"));
+                System.out.println("CourseId:: "+rs.getInt("C_id"));
+                System.out.println("Course name : "+rs.getString("course_name"));
+                System.out.println("Teacher name : "+rs.getString ("Teacher_name"));
+
+            }
+            con.close();
+        }catch(SQLException e){
+            System.out.println(e);
+        }
 }
 
     public static void main(String[] args) {
         JdbcConnection c=new JdbcConnection();
         c.createconnection();
 //        c.addStudent();
-        c.viewStudentdetails();
+//        c.viewStudentdetails();
 //        c.UpdateStuent();
 //        c.DeleteStudent();
 //        c.viewStudentdetails();
@@ -472,8 +535,10 @@ public void DisplayEnrolledStudent(){
 //        c.UpdateCourse();
 //        c.viewCoursedetails();
 //        c.DeleteCourse();
-        c.viewCoursedetails();
-        c.Enrolled_Student();
-        c.DisplayEnrolledStudent();
+//        c.viewTeacherdetails();
+//        c.viewCoursedetails();
+//        c.Enrolled_Student();
+//        c.AssignedTeacher();
+        c.DisplayAssignedTeacher();
     }
 }

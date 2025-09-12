@@ -27,6 +27,7 @@ public class Course {
     public void SetName(String name){
         this.name=name;
 }
+
 public String getName(){
     return name;
 }

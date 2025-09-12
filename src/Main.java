@@ -3,13 +3,14 @@ import java.util.Scanner;
 import com.Managment.*;
 
 import javax.sound.midi.Soundbank;
+import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
         StudentManager S1=new StudentManager();
         TeacherManager T1=new TeacherManager();
         CourseManager c1 =new CourseManager();
-        ServiceMethods sm=new ServiceMethods();
+        JdbcConnection sm=new JdbcConnection();
         System.out.println("hi");
   Scanner sc =new Scanner(System.in);
         System.out.println("choice to chwck details");
@@ -44,19 +45,19 @@ public class Main {
 
                 case 4:
                     System.out.println("Enroll Student to courses");
-                sm.Student_Couse();
+                sm.Enrolled_Student();
                 break;
                 case 5:
                     System.out.println("Assign Teacher to Course");
-                    sm.AssignTeacherCourse();
+                    sm.AssignedTeacher();
                     break;
                 case 6:
                     System.out.println("Display Student in a Course");
-                    sm.DisplayStudentsCourse();
+                    sm.DisplayEnrolledStudent();
                     break;
                 case 7:
                     System.out.println("display Course By Teacher");
-                    sm.DisplayCourseByTeacher();  break;
+                    sm.DisplayAssignedTeacher();  break;
         case 8:
                     System.exit(0);
 break;    default:System.out.println("Incorrect choice or exit ");
