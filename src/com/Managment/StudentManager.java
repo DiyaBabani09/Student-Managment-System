@@ -4,7 +4,8 @@ import java.util.Scanner;
 
 public class StudentManager {
     public  void StudentDetails() {
-        ServiceMethods s = new ServiceMethods();
+        JdbcConnection c1 = new JdbcConnection();
+
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Enter choice");
@@ -20,21 +21,24 @@ public class StudentManager {
 
             switch (n) {
                 case 1:
-                    s.AddStudentDetails();
+                    c1.createconnection();
+                    c1.addStudent();
 
                     break;
 
-                case 2:
-                    s.ViewStudentDetails();
+                case 2: c1.createconnection();
+                    c1.viewStudentdetails();
 
                     break;
 
                 case 3:
-                    s.UpdateStudentDetails();
+                    c1.createconnection();
+                    c1.UpdateStudent();
                     break;
 
                 case 4:
-                    s.DeleteStudentDetails();
+                    c1.createconnection();
+                    c1.DeleteStudent();
                     break;
 
                 default:

@@ -5,7 +5,8 @@ import java.util.Scanner;
 public class CourseManager {
 
     public   void CourseDetails(){
-        ServiceMethods s2=new ServiceMethods();
+//        ServiceMethods s2=new ServiceMethods();
+        JdbcConnection c1=new JdbcConnection();
         Scanner sc =new Scanner(System.in);
         // System.out.println("choice  details");
         System.out.println("Enter choice");
@@ -21,19 +22,27 @@ public class CourseManager {
 
 
             switch (n) {
-                case 1: s2.AddCourseDetails();
+
+                case 1:
+                    c1.createconnection();
+                    c1.addCourseDetails();
 
                     break;
 
-                case 2:s2.ViewCourseDetails();
+                case 2:
+                    c1.createconnection();
+                    c1.viewCoursedetails();
 
                     break;
 
-                case 3:s2.UpdateCourseDetails();
+                case 3:
+                    c1.createconnection();
+                    c1.UpdateCourse();
 
                     break;
 
-                case 4: s2.DeleteCourseDetails();
+                case 4: c1.createconnection();
+                    c1.DeleteCourse();
 
                     break;
 
